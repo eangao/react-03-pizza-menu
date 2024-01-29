@@ -158,3 +158,27 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+//////////////////////////////////////////////////////////////
+// What is JSX?
+//////////////////////////////////////////////////////////////
+
+// See pdf lecture and video
+
+// We have written some pieces of JSX
+// in this course already but what actually is JSX
+// and why is it such a big deal in React?
+
+// Well, when we first talked about components,
+// we talked about how a component contains its own data,
+// logic, and appearance.
+// And that makes sense, right?
+// Because if a component is a piece of the user interface,
+// it means that we must be able to describe exactly
+// what that component looks like.
+
+// And so that's where JSX comes into play.
+// So, JSX is a declarative syntax that we use
+// to describe what components look like
+// and how they work based on their data and logic.
+// So, it's all about the components appearance.
