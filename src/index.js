@@ -90,74 +90,74 @@ const pizzaData = [
 // Creating And Reusing a Component
 /////////////////////////////////////////////////////
 
-function App() {
-  //   This however will give us an error.
-  // So right here, which we already saw before
-  // and the reason for this error
-  // is that each component can only return exactly one element,
-  // not two elements as we have here.
-  //---- return <h1>Hello React!</h1><Pizza/>;
+// function App() {
+//   //   This however will give us an error.
+//   // So right here, which we already saw before
+//   // and the reason for this error
+//   // is that each component can only return exactly one element,
+//   // not two elements as we have here.
+//   //---- return <h1>Hello React!</h1><Pizza/>;
 
-  //   So what we should never do
-  // is to nest the component declaration itself.
-  // So like this, this still works actually,
-  // but it's a very, very bad idea
-  ///////////
-  // function Pizza() {
-  //   return <h2>Pizza</h2>;
-  // }
+//   //   So what we should never do
+//   // is to nest the component declaration itself.
+//   // So like this, this still works actually,
+//   // but it's a very, very bad idea
+//   ///////////
+//   // function Pizza() {
+//   //   return <h2>Pizza</h2>;
+//   // }
 
-  return (
-    <div>
-      <h1>Hello React!</h1>
-      {/* I just want you to get this really important concept that we can call each
-      piece of the UI or in other words, each component multiple times here in
-      order to reuse it and that's a fundamental concept of writing React
-      applications. */}
-      <Pizza />
-      <Pizza />
-      <Pizza />
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <h1>Hello React!</h1>
+//       {/* I just want you to get this really important concept that we can call each
+//       piece of the UI or in other words, each component multiple times here in
+//       order to reuse it and that's a fundamental concept of writing React
+//       applications. */}
+//       <Pizza />
+//       <Pizza />
+//       <Pizza />
+//     </div>
+//   );
+// }
 
-// So in React we write new components using functions.
-// So function, and I'm calling this one pizza
+// // So in React we write new components using functions.
+// // So function, and I'm calling this one pizza
 
-// in React, there are two important rules
-// when we write components as functions.
-// First, the function name needs to start
-// with an uppercase letter like this
-// and second, the function needs to return some markup.
-// So usually in the form of JSX,
-// but we can't even return nothing, like returning null.
+// // in React, there are two important rules
+// // when we write components as functions.
+// // First, the function name needs to start
+// // with an uppercase letter like this
+// // and second, the function needs to return some markup.
+// // So usually in the form of JSX,
+// // but we can't even return nothing, like returning null.
 
-// So never nest the function declarations,
-// but always declare all your components in the top level.
-function Pizza() {
-  return (
-    <div>
-      {/* all the assets of the app will go into this public folder because Webpack,
-      so the module bundler will then basically automatically get them from
-      there.
-      
-       Now we get these yellow underline here and that's because an ESLint
-      rule which says that images always should have an alt prop. */}
-      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
-      <h2>Pizza Spinaci</h2>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
-  );
-}
+// // So never nest the function declarations,
+// // but always declare all your components in the top level.
+// function Pizza() {
+//   return (
+//     <div>
+//       {/* all the assets of the app will go into this public folder because Webpack,
+//       so the module bundler will then basically automatically get them from
+//       there.
 
-// React v18
-const root = ReactDOM.createRoot(document.getElementById("root"));
+//        Now we get these yellow underline here and that's because an ESLint
+//       rule which says that images always should have an alt prop. */}
+//       <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
+//       <h2>Pizza Spinaci</h2>
+//       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+//     </div>
+//   );
+// }
 
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
 //////////////////////////////////////////////////////////////
 // What is JSX?
@@ -182,3 +182,81 @@ root.render(
 // to describe what components look like
 // and how they work based on their data and logic.
 // So, it's all about the components appearance.
+
+//////////////////////////////////////////////////////////////////
+// Creating More Components
+//////////////////////////////////////////////////////////////////
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
+  );
+}
+
+// by the way,
+// we could of course also write these functions
+// as function expressions and arrow functions.
+// So, we could also do const, let's just call it test,
+// equal function like this.
+// Or even simpler, it could be an arrow function.
+// So if you prefer these types of functions,
+// feel free to use those,
+// but I always like to use the regular function keywords
+// as I have been using.
+function Header() {
+  return <h1>Fast React Pizza Co.</h1>;
+}
+
+function Menu() {
+  return (
+    <div>
+      <h2>Our Menu</h2>
+      <Pizza />
+      <Pizza />
+      <Pizza />
+    </div>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>{new Date().toLocaleDateString()}. We're currently open</footer>
+  );
+
+  // //   ust so you can see how
+  // // bad it would be to write components this way without JSX.
+  ///////////// return React.createElement("footer", null, "We're currently open");
+}
+
+function Pizza() {
+  return (
+    <div>
+      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
+      <h2>Pizza Spinaci</h2>
+      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+    </div>
+  );
+}
+
+// React v18
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// here in the actual HTML
+// we will no longer see the name of our components, right?
+// Because once React renders everything into the dom,
+// it only renders the h1 element itself.
+// So the dom doesn't know that this h1 is actually coming
+// from this header component and that these divs,
+// for example, are actually coming from a pizza component.
+// This webpage that is now being rendered here
+// has no idea about any of that.
