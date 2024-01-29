@@ -187,6 +187,84 @@ const pizzaData = [
 // Creating More Components
 //////////////////////////////////////////////////////////////////
 
+// function App() {
+//   return (
+//     <div>
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// // by the way,
+// // we could of course also write these functions
+// // as function expressions and arrow functions.
+// // So, we could also do const, let's just call it test,
+// // equal function like this.
+// // Or even simpler, it could be an arrow function.
+// // So if you prefer these types of functions,
+// // feel free to use those,
+// // but I always like to use the regular function keywords
+// // as I have been using.
+// function Header() {
+//   return <h1>Fast React Pizza Co.</h1>;
+// }
+
+// function Menu() {
+//   return (
+//     <div>
+//       <h2>Our Menu</h2>
+//       <Pizza />
+//       <Pizza />
+//       <Pizza />
+//     </div>
+//   );
+// }
+
+// function Footer() {
+//   return (
+//     <footer>{new Date().toLocaleDateString()}. We're currently open</footer>
+//   );
+
+//   // //   ust so you can see how
+//   // // bad it would be to write components this way without JSX.
+//   ///////////// return React.createElement("footer", null, "We're currently open");
+// }
+
+// function Pizza() {
+//   return (
+//     <div>
+//       <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
+//       <h2>Pizza Spinaci</h2>
+//       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+//     </div>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+// // here in the actual HTML
+// // we will no longer see the name of our components, right?
+// // Because once React renders everything into the dom,
+// // it only renders the h1 element itself.
+// // So the dom doesn't know that this h1 is actually coming
+// // from this header component and that these divs,
+// // for example, are actually coming from a pizza component.
+// // This webpage that is now being rendered here
+// // has no idea about any of that.
+
+///////////////////////////////////////////////////////
+// JavaScript Logic in Components
+///////////////////////////////////////////////////////
+
 function App() {
   return (
     <div>
@@ -197,16 +275,6 @@ function App() {
   );
 }
 
-// by the way,
-// we could of course also write these functions
-// as function expressions and arrow functions.
-// So, we could also do const, let's just call it test,
-// equal function like this.
-// Or even simpler, it could be an arrow function.
-// So if you prefer these types of functions,
-// feel free to use those,
-// but I always like to use the regular function keywords
-// as I have been using.
 function Header() {
   return <h1>Fast React Pizza Co.</h1>;
 }
@@ -223,13 +291,35 @@ function Menu() {
 }
 
 function Footer() {
+  // Let's now take a quick first look
+  // at writing logic inside of React components.
+  // Now we have already written some JavaScript logic before
+  // but we always did it just inside the JSX that is returned.
+  // So just like here, right?
+  // But since components are just JavaScript functions,
+  // we can of course do any JavaScript in them that we want.
+  // And that code is then simply executed
+  // as soon as the function is call.
+  // So as soon as the component is initialized.
+
+  const hour = new Date().getHours();
+  const openHour = 12;
+  const closeHour = 22;
+  const isOpen = hour >= openHour && hour <= closeHour;
+  console.log(isOpen);
+
+  //   and you saw that alert it happened here twice.
+  // And that's because of the strict mode
+  // that I was telling you before.
+  // So in strict mode, our components are usually rendered twice
+  // and so that's why we got that alert twice as well.
+  // Now, if we
+  // if (hour >= openHour && hour <= closeHour) alert("Were currently open!");
+  // else alert("Sorry were closed");
+
   return (
     <footer>{new Date().toLocaleDateString()}. We're currently open</footer>
   );
-
-  // //   ust so you can see how
-  // // bad it would be to write components this way without JSX.
-  ///////////// return React.createElement("footer", null, "We're currently open");
 }
 
 function Pizza() {
@@ -250,13 +340,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// here in the actual HTML
-// we will no longer see the name of our components, right?
-// Because once React renders everything into the dom,
-// it only renders the h1 element itself.
-// So the dom doesn't know that this h1 is actually coming
-// from this header component and that these divs,
-// for example, are actually coming from a pizza component.
-// This webpage that is now being rendered here
-// has no idea about any of that.
