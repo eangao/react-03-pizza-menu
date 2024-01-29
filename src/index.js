@@ -380,35 +380,242 @@ const pizzaData = [
 // // But now, many years later,
 // // we all got used to this and it works just great.
 
-/////////////////////////////////////////////////////////////////
-// Styling React Applications
-/////////////////////////////////////////////////////////////////
-// So at this point, we know
-// that React components can also contain CSS styles.
-// And so let's now learn about some simple ways
-// of applying CSS to React applications.
+// /////////////////////////////////////////////////////////////////
+// // Styling React Applications
+// /////////////////////////////////////////////////////////////////
+// // So at this point, we know
+// // that React components can also contain CSS styles.
+// // And so let's now learn about some simple ways
+// // of applying CSS to React applications.
 
-// So in React we have many different ways
-// of styling our components
-// and React doesn't really care about how we do that.
-// It doesn't have an opinion about styling.
-// And the reason for that is that just
-// as we learned in the very beginning
-// React is actually more of a library than a framework.
+// // So in React we have many different ways
+// // of styling our components
+// // and React doesn't really care about how we do that.
+// // It doesn't have an opinion about styling.
+// // And the reason for that is that just
+// // as we learned in the very beginning
+// // React is actually more of a library than a framework.
 
-// So it doesn't have a preferred way of how we should style
-// our components and in the end our applications, therefore
-// we can choose between many different options.
-// For example, we can use inline styling
-// we can use external CSS or even SAS files.
-// We can use CSS modules, styled components, or even Tailwind
-// CSS is an option to style our components.
+// // So it doesn't have a preferred way of how we should style
+// // our components and in the end our applications, therefore
+// // we can choose between many different options.
+// // For example, we can use inline styling
+// // we can use external CSS or even SAS files.
+// // We can use CSS modules, styled components, or even Tailwind
+// // CSS is an option to style our components.
 
-// Now in this lecture
-// we will not go into all of these of course
-// but we will talk about many of them later.
-// For now, I just want to use inline CSS
-// and then also later include an external CSS file.
+// // Now in this lecture
+// // we will not go into all of these of course
+// // but we will talk about many of them later.
+// // For now, I just want to use inline CSS
+// // and then also later include an external CSS file.
+
+// function App() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// function Header() {
+//   // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
+//   const style = {};
+
+//   //   So in JSX, we actually need to define inline styles
+//   // using a JavaScript object.
+//   // So if we need to write a JavaScript object
+//   // we first need to enter JavaScript mode.
+//   // So that's what the curly braces are for. {}
+//   // But then we need another set of curly braces.
+//   // And so that is again, to now create an object. {{}}
+//   // And so here we can now define some properties.
+//   return (
+//     // all the CSS property names have
+//     // been converted basically in JSX to this camel case notation.
+
+//     //     So make sure to always write these property values.
+//     // Then basically here S strings, because again,
+//     // this is in the end just a JavaScript object
+//     // and you could even extract this out here.
+//     // So just cutting this, let's create a variable here.
+//     // <h1 style={{ color: "red", fontSize: "48px", textTransform: "uppercase" }}>
+//     //   Fast React Pizza Co.
+//     // </h1>
+
+//     //////////////////
+//     // still looks the same.
+//     // Great. So this is the easiest way
+//     // of adding some styling to individual components.
+//     // However, when the application gets just a little bit bigger
+//     // it can get out of hand
+//     // and can be a lot of work to write our styles like this.
+//     // So like creating an object
+//     // for each of these components, it's perfectly doable
+//     // but you don't see many people doing that in the real world.
+//     // Now one thing that we can do is to actually
+//     // include an external CSS files just
+//     // like we have been doing all the time in our applications.
+//     // And so that is the easiest way I would say to
+//     // style React applications, which is basically the same
+//     // as styling any other webpage.
+//     // Now in that case we're not really mixing DCSS concern
+//     // with the JavaScript and HTML concerns
+//     // in the way that we learned in the last lecture
+//     // but that's of course not a problem.
+//     // And also we will learn how to do that a little bit later
+//     // again, using something called styled components.
+
+//     ///////
+//     //     So this is a little bit just of semantic HTML right here
+//     // or let's say a semantic markup where the header
+//     // element is a bit better suited here
+//     // than simply having the H-1.
+//     <header className="header">
+//       <h1 style={style}>Fast React Pizza Co.</h1>
+//     </header>
+//   );
+// }
+
+// function Menu() {
+//   return (
+//     //     And here, since we were talking about semantic markup
+//     // let's actually use the main tag, so the main HTML element
+//     <main className="menu">
+//       <h2>Our Menu</h2>
+//       <Pizza />
+//       <Pizza />
+//       <Pizza />
+//     </main>
+//   );
+// }
+
+// function Footer() {
+//   const hour = new Date().getHours();
+//   const openHour = 12;
+//   const closeHour = 22;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   console.log(isOpen);
+
+//   return (
+//     <footer className="footer">
+//       {new Date().toLocaleDateString()}. We're currently open
+//     </footer>
+//   );
+// }
+
+// function Pizza() {
+//   return (
+//     <div>
+//       <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
+//       <h3>Pizza Spinaci</h3>
+//       <p>Tomato, mozarella, spinach, and ricotta cheese</p>
+//     </div>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+// // so before we add the classes
+// // we need to first import this CSS file.
+// // So right now our application has no way
+// // of knowing that the CSS file exists in the project.
+
+// // So what we need to do here is to simply import that file.
+// // And so once again
+// // it is actually web pack that will take care
+// // of then taking the styles out
+// // of the CSS file and injecting them into our application.
+// // So index dot CSS.
+
+// // And you see already things changed here.
+// // So the background color is different
+// // the font family has changed.
+// // Yeah, for now, think that's all.
+// // And we also get this nice yellow border
+// // at the bottom of the page.
+// // So you see that immediately web pack
+// // included these styles now in our application now,
+
+// // but now let's add the classes.
+// // So you see that we have one container
+// // we have a header, we have menu, and we probably have footer.
+// // Yeah, so just very straightforward.
+// // So here, let's add the class of container
+// // and let me first do it in the wrong way.
+
+// // So I will just write class as we would do in HTML
+// // but then React will actually warn us.
+// // So you see here, Invalid DOM property class
+// // did you mean class name?
+
+// // And so this is one of the important rules of JSX.
+// // So in JSX we cannot use class, but instead class name.
+
+// // So this is a common beginner mistake, but now
+// // you have been warned it still does work here somehow
+// // but we are really not supposed to use class in JSX.
+// // Now that's probably because class is already
+// // a reserved keywords in JavaScript.
+
+// //////////////
+// // there are a few more JSX rules like this
+// // which we will talk about a little bit later in this section.
+// // For now, just notice that the styles that we included here
+// // are global styles, so they're not scoped
+// // to each particular component, and that's very easy to show.
+
+// // For example, we could add the header class also here.
+// // And while that looks kind of the same
+// // let's try something else.
+// // Let's add maybe the footer class also to the header.
+// // Yeah. And again, it doesn't change a lot, but if
+// // we inspect the element here, yeah, so right here, then
+// // of course both of these classes here.
+
+// // So all of these styles will be applied to this same element
+// // and in the end to the same component.
+// // And so again, each component does not really contain
+// // its own styles but simply uses the global styles
+// // that are in index.CSS.
+// // And this works fine for small apps,
+
+// // but we will also use something called styled components
+// // later in another project.
+// // And so then we will have CSS that really only belongs
+// // to one single component.
+
+///////////////////////////////////////////////////////////////////
+// Passing and Receiving Props
+///////////////////////////////////////////////////////////////////
+// It's time to introduce
+// yet another fundamental React concept, which is props.
+// And props is essentially
+// how we pass data between components.
+// And in particular, from parent components
+// to child components.
+// So we can imagine props as being
+// like a communication channel
+// between a parent and a child component.
+// So in practice, what we're going to do,
+// is to now customize each of these pizza components
+// that we have right here.
+// So, remember how we created the pizza component
+// which has this image, the pizza name, and the ingredients.
+// But right now all of the pizzas are the same
+// because, well, we didn't have a way of passing
+// different data into them to make each of them customized.
+// But now, as we learn about props,
+// we will be able to do that.
 
 function App() {
   return (
@@ -421,58 +628,9 @@ function App() {
 }
 
 function Header() {
-  // const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
   const style = {};
 
-  //   So in JSX, we actually need to define inline styles
-  // using a JavaScript object.
-  // So if we need to write a JavaScript object
-  // we first need to enter JavaScript mode.
-  // So that's what the curly braces are for. {}
-  // But then we need another set of curly braces.
-  // And so that is again, to now create an object. {{}}
-  // And so here we can now define some properties.
   return (
-    // all the CSS property names have
-    // been converted basically in JSX to this camel case notation.
-
-    //     So make sure to always write these property values.
-    // Then basically here S strings, because again,
-    // this is in the end just a JavaScript object
-    // and you could even extract this out here.
-    // So just cutting this, let's create a variable here.
-    // <h1 style={{ color: "red", fontSize: "48px", textTransform: "uppercase" }}>
-    //   Fast React Pizza Co.
-    // </h1>
-
-    //////////////////
-    // still looks the same.
-    // Great. So this is the easiest way
-    // of adding some styling to individual components.
-    // However, when the application gets just a little bit bigger
-    // it can get out of hand
-    // and can be a lot of work to write our styles like this.
-    // So like creating an object
-    // for each of these components, it's perfectly doable
-    // but you don't see many people doing that in the real world.
-    // Now one thing that we can do is to actually
-    // include an external CSS files just
-    // like we have been doing all the time in our applications.
-    // And so that is the easiest way I would say to
-    // style React applications, which is basically the same
-    // as styling any other webpage.
-    // Now in that case we're not really mixing DCSS concern
-    // with the JavaScript and HTML concerns
-    // in the way that we learned in the last lecture
-    // but that's of course not a problem.
-    // And also we will learn how to do that a little bit later
-    // again, using something called styled components.
-
-    ///////
-    //     So this is a little bit just of semantic HTML right here
-    // or let's say a semantic markup where the header
-    // element is a bit better suited here
-    // than simply having the H-1.
     <header className="header">
       <h1 style={style}>Fast React Pizza Co.</h1>
     </header>
@@ -481,8 +639,6 @@ function Header() {
 
 function Menu() {
   return (
-    //     And here, since we were talking about semantic markup
-    // let's actually use the main tag, so the main HTML element
     <main className="menu">
       <h2>Our Menu</h2>
       <Pizza />
@@ -524,72 +680,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// so before we add the classes
-// we need to first import this CSS file.
-// So right now our application has no way
-// of knowing that the CSS file exists in the project.
-
-// So what we need to do here is to simply import that file.
-// And so once again
-// it is actually web pack that will take care
-// of then taking the styles out
-// of the CSS file and injecting them into our application.
-// So index dot CSS.
-
-// And you see already things changed here.
-// So the background color is different
-// the font family has changed.
-// Yeah, for now, think that's all.
-// And we also get this nice yellow border
-// at the bottom of the page.
-// So you see that immediately web pack
-// included these styles now in our application now,
-
-// but now let's add the classes.
-// So you see that we have one container
-// we have a header, we have menu, and we probably have footer.
-// Yeah, so just very straightforward.
-// So here, let's add the class of container
-// and let me first do it in the wrong way.
-
-// So I will just write class as we would do in HTML
-// but then React will actually warn us.
-// So you see here, Invalid DOM property class
-// did you mean class name?
-
-// And so this is one of the important rules of JSX.
-// So in JSX we cannot use class, but instead class name.
-
-// So this is a common beginner mistake, but now
-// you have been warned it still does work here somehow
-// but we are really not supposed to use class in JSX.
-// Now that's probably because class is already
-// a reserved keywords in JavaScript.
-
-//////////////
-// there are a few more JSX rules like this
-// which we will talk about a little bit later in this section.
-// For now, just notice that the styles that we included here
-// are global styles, so they're not scoped
-// to each particular component, and that's very easy to show.
-
-// For example, we could add the header class also here.
-// And while that looks kind of the same
-// let's try something else.
-// Let's add maybe the footer class also to the header.
-// Yeah. And again, it doesn't change a lot, but if
-// we inspect the element here, yeah, so right here, then
-// of course both of these classes here.
-
-// So all of these styles will be applied to this same element
-// and in the end to the same component.
-// And so again, each component does not really contain
-// its own styles but simply uses the global styles
-// that are in index.CSS.
-// And this works fine for small apps,
-
-// but we will also use something called styled components
-// later in another project.
-// And so then we will have CSS that really only belongs
-// to one single component.
