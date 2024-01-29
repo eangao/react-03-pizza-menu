@@ -340,3 +340,41 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+////////////////////////////////////////////////////////
+// Separation of Concerns
+////////////////////////////////////////////////////////
+// see pdf lecture and video
+
+// the first place?
+// So why not just keep HTML, CSS and JavaScript
+// in separate places, like we have always done before?
+// And this might sound like a trivial question,
+
+// something you think is not really relevant at all
+// but it's actually deeply relevant to understand why
+// React was completely designed around components.
+
+// Now when React and JSX first came out a long time ago,
+// many, many people just hated the way that JSX looks like.
+// And they hated that we are throwing separations
+// of concerns out of the window.
+// But actually, are we really?
+// Is there really no separation of concerns in React?
+
+// Well, I think that the people who say
+// that React has no separation of concerns, got it all wrong.
+// Because React does actually have separation of concerns.
+// It's just not one concern per file,
+// as we had traditionally but one concern per component.
+// So each component is in fact,
+// only concerned with one piece of the UI.
+// Then within each of these components,
+// of course we still have the three concerns of HTML,
+// CSS and JavaScript all mixed up, as we have been discussing.
+
+// So compared to the traditional separation of concerns,
+// this is a completely new paradigm
+// that many people were really not used to in the beginning.
+// But now, many years later,
+// we all got used to this and it works just great.
