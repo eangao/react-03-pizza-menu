@@ -733,19 +733,135 @@ const pizzaData = [
 // // But that's why I am here by your site,
 // // helping you along the way.
 
-////////////////////////////////////////////////////////////
-// Rendering Lists
-////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////
+// // Rendering Lists
+// ////////////////////////////////////////////////////////////
 
-// that we do in basically all React applications.
-// You will probably do it like 100 times
-// throughout this course
-// and so let's now learn how to render lists in React.
-// But first of all, what do we actually mean
-// by rendering lists?
-// Well, basically rendering a list is when we have an array
-// and we want to create one component
-// for each element of the array.
+// // that we do in basically all React applications.
+// // You will probably do it like 100 times
+// // throughout this course
+// // and so let's now learn how to render lists in React.
+// // But first of all, what do we actually mean
+// // by rendering lists?
+// // Well, basically rendering a list is when we have an array
+// // and we want to create one component
+// // for each element of the array.
+
+// function App() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// function Header() {
+//   const style = {};
+
+//   return (
+//     <header className="header">
+//       <h1 style={style}>Fast React Pizza Co.</h1>
+//     </header>
+//   );
+// }
+
+// function Menu() {
+//   return (
+//     <main className="menu">
+//       <h2>Our Menu</h2>
+
+//       <ul className="pizzas">
+//         {pizzaData.map((pizza) => (
+//           // <Pizza pizzaObject={pizza} />
+//           // index.js:773 Warning: Each child in a list should have a unique "key" prop.
+
+//           //  So we have this warning saying that each child
+//           // in a list should have a unique key property.
+//           // So basically what this means is that each time we render
+//           // a list like this.
+//           // Where is it?
+//           // Yeah so each time we render a list with the map method,
+//           // each of the items that gets rendered
+//           // needs a unique key property.
+//           // So key is basically a prop that is internal to React,
+//           // which it needs in order for some performance optimizations
+//           //           For now, what matters is that we pass something here
+//           // that is unique to each element.
+//           // So to each pizza in this case, and that is the name.
+//           // So the name in this example is always unique.
+//           // So we can use that one as the unique key
+//           // and so then the warning here is gone.
+//           <Pizza pizzaObject={pizza} key={pizza.name} />
+//         ))}
+//       </ul>
+
+//       {/* <Pizza
+//         name="Pizza Spinaci"
+//         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+//         photoName="pizzas/spinaci.jpg"
+//         price={10}
+//       />
+
+//       <Pizza
+//         name="Pizza Funghi"
+//         ingredients="Tomato, mushrooms"
+//         price={15}
+//         photoName="pizzas/funghi.jpg"
+//       /> */}
+//     </main>
+//   );
+// }
+
+// function Pizza(props) {
+//   console.log(props);
+//   return (
+//     <li className="pizza">
+//       <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+//       <div>
+//         <h3>{props.pizzaObject.name}</h3>
+//         <p>{props.pizzaObject.ingredients}</p>
+//         <span>{props.pizzaObject.price}</span>
+//       </div>
+//     </li>
+//   );
+// }
+
+// function Footer() {
+//   const hour = new Date().getHours();
+//   const openHour = 12;
+//   const closeHour = 22;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   console.log(isOpen);
+
+//   return (
+//     <footer className="footer">
+//       {new Date().toLocaleDateString()}. We're currently open
+//     </footer>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+/////////////////////////////////////////////////////////////////
+// Conditional Rendering With &&
+/////////////////////////////////////////////////////////////////
+// Another very important technique
+// that we use all the time in React development
+// is conditional rendering.
+// So in this video, and the next two,
+// we will talk about three ways of rendering some JSX,
+// or even an entire component,
+// based on a condition
+// and starting in this lecture with the & operator.
 
 function App() {
   return (
@@ -774,42 +890,9 @@ function Menu() {
 
       <ul className="pizzas">
         {pizzaData.map((pizza) => (
-          // <Pizza pizzaObject={pizza} />
-          // index.js:773 Warning: Each child in a list should have a unique "key" prop.
-
-          //  So we have this warning saying that each child
-          // in a list should have a unique key property.
-          // So basically what this means is that each time we render
-          // a list like this.
-          // Where is it?
-          // Yeah so each time we render a list with the map method,
-          // each of the items that gets rendered
-          // needs a unique key property.
-          // So key is basically a prop that is internal to React,
-          // which it needs in order for some performance optimizations
-          //           For now, what matters is that we pass something here
-          // that is unique to each element.
-          // So to each pizza in this case, and that is the name.
-          // So the name in this example is always unique.
-          // So we can use that one as the unique key
-          // and so then the warning here is gone.
           <Pizza pizzaObject={pizza} key={pizza.name} />
         ))}
       </ul>
-
-      {/* <Pizza
-        name="Pizza Spinaci"
-        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
-        photoName="pizzas/spinaci.jpg"
-        price={10}
-      />
-
-      <Pizza
-        name="Pizza Funghi"
-        ingredients="Tomato, mushrooms"
-        price={15}
-        photoName="pizzas/funghi.jpg"
-      /> */}
     </main>
   );
 }
