@@ -972,6 +972,12 @@ const pizzaData = [
 // Conditional Rendering With Ternaries
 /////////////////////////////////////////////////////////////////////
 
+// So, let's check out how we can do the same thing
+// with the ternary operator.
+// So, instead of the end operator here,
+// let's now use the ternary operator
+// to do conditional rendering.
+
 function App() {
   return (
     <div className="container">
@@ -1000,12 +1006,14 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
 
-      {numPizzas > 0 && (
+      {numPizzas > 0 ? (
         <ul className="pizzas">
           {pizzas.map((pizza) => (
             <Pizza pizzaObject={pizza} key={pizza.name} />
           ))}
         </ul>
+      ) : (
+        <p>We're still working on our menu. Please come back later :)</p>
       )}
     </main>
   );
@@ -1027,20 +1035,24 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 10;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
   return (
     <footer className="fo oter">
-      {isOpen && (
+      {isOpen ? (
         <div className="order">
           <p>
             We're open untill {closeHour}:00. Come visit us or order online.
           </p>
           <button className="btn">Order</button>
         </div>
+      ) : (
+        <p>
+          We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+        </p>
       )}
     </footer>
   );
