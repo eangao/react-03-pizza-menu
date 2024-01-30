@@ -968,15 +968,111 @@ const pizzaData = [
 //   </React.StrictMode>
 // );
 
-/////////////////////////////////////////////////////////////////////
-// Conditional Rendering With Ternaries
-/////////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////////
+// // Conditional Rendering With Ternaries
+// /////////////////////////////////////////////////////////////////////
 
-// So, let's check out how we can do the same thing
-// with the ternary operator.
-// So, instead of the end operator here,
-// let's now use the ternary operator
-// to do conditional rendering.
+// // So, let's check out how we can do the same thing
+// // with the ternary operator.
+// // So, instead of the end operator here,
+// // let's now use the ternary operator
+// // to do conditional rendering.
+
+// function App() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// function Header() {
+//   const style = {};
+
+//   return (
+//     <header className="header">
+//       <h1 style={style}>Fast React Pizza Co.</h1>
+//     </header>
+//   );
+// }
+
+// function Menu() {
+//   const pizzas = pizzaData;
+//   const numPizzas = pizzas.length;
+
+//   return (
+//     <main className="menu">
+//       <h2>Our Menu</h2>
+
+//       {numPizzas > 0 ? (
+//         <ul className="pizzas">
+//           {pizzas.map((pizza) => (
+//             <Pizza pizzaObject={pizza} key={pizza.name} />
+//           ))}
+//         </ul>
+//       ) : (
+//         <p>We're still working on our menu. Please come back later :)</p>
+//       )}
+//     </main>
+//   );
+// }
+
+// function Pizza(props) {
+//   console.log(props);
+//   return (
+//     <li className="pizza">
+//       <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+//       <div>
+//         <h3>{props.pizzaObject.name}</h3>
+//         <p>{props.pizzaObject.ingredients}</p>
+//         <span>{props.pizzaObject.price}</span>
+//       </div>
+//     </li>
+//   );
+// }
+
+// function Footer() {
+//   const hour = new Date().getHours();
+//   const openHour = 10;
+//   const closeHour = 22;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   console.log(isOpen);
+
+//   return (
+//     <footer className="fo oter">
+//       {isOpen ? (
+//         <div className="order">
+//           <p>
+//             We're open untill {closeHour}:00. Come visit us or order online.
+//           </p>
+//           <button className="btn">Order</button>
+//         </div>
+//       ) : (
+//         <p>
+//           We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+//         </p>
+//       )}
+//     </footer>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+///////////////////////////////////////////////////////////////////
+// Conditional Rendering With Multiple Returns
+///////////////////////////////////////////////////////////////////
+// The third way
+// in which we can conditionally render some JSX
+// or some component is by using multiple returns.
 
 function App() {
   return (
