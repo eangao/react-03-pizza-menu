@@ -11,7 +11,7 @@ function App() {
         {/* Should contain one Skill component
         for each web dev skill that you have,
         customized with props */}
-        <SkillList basic="HTML+CSS 🙋‍♂️" />
+        <SkillList />
       </div>
     </div>
   );
