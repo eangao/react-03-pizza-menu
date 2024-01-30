@@ -772,7 +772,32 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
 
-      <Pizza
+      <ul className="pizzas">
+        {pizzaData.map((pizza) => (
+          // <Pizza pizzaObject={pizza} />
+          // index.js:773 Warning: Each child in a list should have a unique "key" prop.
+
+          //  So we have this warning saying that each child
+          // in a list should have a unique key property.
+          // So basically what this means is that each time we render
+          // a list like this.
+          // Where is it?
+          // Yeah so each time we render a list with the map method,
+          // each of the items that gets rendered
+          // needs a unique key property.
+          // So key is basically a prop that is internal to React,
+          // which it needs in order for some performance optimizations
+          //           For now, what matters is that we pass something here
+          // that is unique to each element.
+          // So to each pizza in this case, and that is the name.
+          // So the name in this example is always unique.
+          // So we can use that one as the unique key
+          // and so then the warning here is gone.
+          <Pizza pizzaObject={pizza} key={pizza.name} />
+        ))}
+      </ul>
+
+      {/* <Pizza
         name="Pizza Spinaci"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
         photoName="pizzas/spinaci.jpg"
@@ -784,7 +809,7 @@ function Menu() {
         ingredients="Tomato, mushrooms"
         price={15}
         photoName="pizzas/funghi.jpg"
-      />
+      /> */}
     </main>
   );
 }
@@ -792,14 +817,14 @@ function Menu() {
 function Pizza(props) {
   console.log(props);
   return (
-    <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
+    <li className="pizza">
+      <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
       <div>
-        <h3>{props.name}</h3>
-        <p>{props.ingredients}</p>
-        <span>{props.price + 3}</span>
+        <h3>{props.pizzaObject.name}</h3>
+        <p>{props.pizzaObject.ingredients}</p>
+        <span>{props.pizzaObject.price}</span>
       </div>
-    </div>
+    </li>
   );
 }
 
