@@ -1117,6 +1117,11 @@ function Menu() {
 
 function Pizza(props) {
   console.log(props);
+
+  // And so with this then the pizza that is sold out
+  // will not appear on the user interface,
+  if (props.pizzaObject.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
@@ -1131,13 +1136,30 @@ function Pizza(props) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 10;
+  const openHour = 20;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
 
+  //  there is nothing stopping us
+  // from adding another return keyword based on some condition.
+  // So, of course each component
+  // still can only return one block of JSX,
+  // but that return can depend on a condition.
+
+  // here, we are outside of JSX,
+  // so we are simply inside the component,
+  // and so here we can write any JavaScript we want.
+  // So, we can now easily use the if keywords
+
+  //   So, usually this early return, like we did here,
+  // is more useful when we want
+  // to render entire components conditionally
+  // but not just some pieces of JSX.
+  // if (!isOpen) return <p>CLOSE</p>;
+
   return (
-    <footer className="fo oter">
+    <footer className="footer">
       {isOpen ? (
         <div className="order">
           <p>
@@ -1162,3 +1184,16 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// So, as a conclusion
+// of these three lectures on conditional rendering
+// my recommendation is to use the return operator whenever
+// you need to return some piece of JSX based on a condition.
+
+// but also sometimes you just want to do something,
+// you want to return something entirely different
+
+// So, throughout this course you will learn
+// which of these options is the best
+// simply by practicing and using them
+// in different situations over and over again.
