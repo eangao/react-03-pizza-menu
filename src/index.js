@@ -599,13 +599,16 @@ const pizzaData = [
 ///////////////////////////////////////////////////////////////////
 // It's time to introduce
 // yet another fundamental React concept, which is props.
+
 // And props is essentially
 // how we pass data between components.
 // And in particular, from parent components
 // to child components.
+
 // So we can imagine props as being
 // like a communication channel
 // between a parent and a child component.
+
 // So in practice, what we're going to do,
 // is to now customize each of these pizza components
 // that we have right here.
@@ -641,10 +644,48 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
+
+      {/* to define props, we do it in two steps. 
+       First, we pass the props
+      into the component, 
+        */}
+      <Pizza
+        name="Pizza Spinaci"
+        ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+        photoName="pizzas/spinaci.jpg"
+        price={10}
+      />
+
+      <Pizza
+        name="Pizza Funghi"
+        ingredients="Tomato, mushrooms"
+        // price="15"
+
+        //         whenever you want to pass in
+        // something that is not a string,
+        // you just use, again, this JavaScript mode basically.
+        // Because, in fact, you can pass in anything as a prop.
+        // So it doesn't have to be a string or a number.
+        price={15}
+        photoName="pizzas/funghi.jpg"
+      />
     </main>
+  );
+}
+
+// and then second, we receive the props in the
+// component that we pass them into.
+function Pizza(props) {
+  console.log(props);
+  return (
+    <div className="pizza">
+      <img src={props.photoName} alt={props.name} />
+      <div>
+        <h3>{props.name}</h3>
+        <p>{props.ingredients}</p>
+        <span>{props.price + 3}</span>
+      </div>
+    </div>
   );
 }
 
@@ -659,16 +700,6 @@ function Footer() {
     <footer className="footer">
       {new Date().toLocaleDateString()}. We're currently open
     </footer>
-  );
-}
-
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="Pizza Spinaci" />
-      <h3>Pizza Spinaci</h3>
-      <p>Tomato, mozarella, spinach, and ricotta cheese</p>
-    </div>
   );
 }
 
