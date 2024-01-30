@@ -884,15 +884,28 @@ function Header() {
 }
 
 function Menu() {
+  const pizzas = pizzaData;
+  // const pizzas = []; // empty array = truthy value
+  const numPizzas = pizzas.length;
+
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-
-      <ul className="pizzas">
-        {pizzaData.map((pizza) => (
-          <Pizza pizzaObject={pizza} key={pizza.name} />
-        ))}
-      </ul>
+      {/*react render 0 not boolean value(True or False) in short circuiting 
+      
+      Now because of this behavior here that I just showed you, so that
+      sometimes a zero can show up in the UI, many people say that we should
+      actually never use the & operator to do conditional rendering. Now I don't
+      really agree with that because sometimes it's nice to very quickly do some
+      conditional rendering with this, but also usually, I do prefer the ternary
+      operator to do conditional rendering. */}
+      {numPizzas > 0 && (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza pizzaObject={pizza} key={pizza.name} />
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
@@ -919,8 +932,29 @@ function Footer() {
   console.log(isOpen);
 
   return (
-    <footer className="footer">
-      {new Date().toLocaleDateString()}. We're currently open
+    <footer className="fo oter">
+      {/* {new Date().toLocaleDateString()}. We're currently open */}
+
+      {/* And so now what we want to do is to basically only render something here
+      inside of the footer if the restaurant is currently open. And so that's
+      what conditional rendering is all about. So it's basically rendering some
+      piece of the UI, no matter if that's a piece of JSX, or if it's an entire
+      component, based on a certain condition. And again, in this case, the
+      condition is simply whether the restaurant is currently open or not. 
+      
+      we're going to do conditional rendering
+      with the & operator
+      and that works because of short circuiting.
+      Now, in case you're not sure what short circuiting means,*/}
+      {/*react render  true or False value in short circuiting */}
+      {isOpen && (
+        <div className="order">
+          <p>
+            We're open untill {closeHour}:00. Come visit us or order online.
+          </p>
+          <button className="btn">Order</button>
+        </div>
+      )}
     </footer>
   );
 }
