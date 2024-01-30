@@ -720,3 +720,15 @@ root.render(
 // So now that we already know what props are
 // and how we use them in practice, let's quickly review them
 // and even learn some important additional things about props.
+
+//////////////////////////////////////////////////////////
+// The Rules of JSX
+//////////////////////////////////////////////////////////
+// see pdf lecture and video
+
+// Many beginners get quite confused
+// when they start using JSX in their own code.
+// And in fact, JSX can be a bit tricky to understand
+// and to master.
+// But that's why I am here by your site,
+// helping you along the way.
