@@ -594,31 +594,158 @@ const pizzaData = [
 // // And so then we will have CSS that really only belongs
 // // to one single component.
 
-///////////////////////////////////////////////////////////////////
-// Passing and Receiving Props
-///////////////////////////////////////////////////////////////////
-// It's time to introduce
-// yet another fundamental React concept, which is props.
+// ///////////////////////////////////////////////////////////////////
+// // Passing and Receiving Props
+// ///////////////////////////////////////////////////////////////////
+// // It's time to introduce
+// // yet another fundamental React concept, which is props.
 
-// And props is essentially
-// how we pass data between components.
-// And in particular, from parent components
-// to child components.
+// // And props is essentially
+// // how we pass data between components.
+// // And in particular, from parent components
+// // to child components.
 
-// So we can imagine props as being
-// like a communication channel
-// between a parent and a child component.
+// // So we can imagine props as being
+// // like a communication channel
+// // between a parent and a child component.
 
-// So in practice, what we're going to do,
-// is to now customize each of these pizza components
-// that we have right here.
-// So, remember how we created the pizza component
-// which has this image, the pizza name, and the ingredients.
-// But right now all of the pizzas are the same
-// because, well, we didn't have a way of passing
-// different data into them to make each of them customized.
-// But now, as we learn about props,
-// we will be able to do that.
+// // So in practice, what we're going to do,
+// // is to now customize each of these pizza components
+// // that we have right here.
+// // So, remember how we created the pizza component
+// // which has this image, the pizza name, and the ingredients.
+// // But right now all of the pizzas are the same
+// // because, well, we didn't have a way of passing
+// // different data into them to make each of them customized.
+// // But now, as we learn about props,
+// // we will be able to do that.
+
+// function App() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// function Header() {
+//   const style = {};
+
+//   return (
+//     <header className="header">
+//       <h1 style={style}>Fast React Pizza Co.</h1>
+//     </header>
+//   );
+// }
+
+// function Menu() {
+//   return (
+//     <main className="menu">
+//       <h2>Our Menu</h2>
+
+//       {/* to define props, we do it in two steps.
+//        First, we pass the props
+//       into the component,
+//         */}
+//       <Pizza
+//         name="Pizza Spinaci"
+//         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
+//         photoName="pizzas/spinaci.jpg"
+//         price={10}
+//       />
+
+//       <Pizza
+//         name="Pizza Funghi"
+//         ingredients="Tomato, mushrooms"
+//         // price="15"
+
+//         //         whenever you want to pass in
+//         // something that is not a string,
+//         // you just use, again, this JavaScript mode basically.
+//         // Because, in fact, you can pass in anything as a prop.
+//         // So it doesn't have to be a string or a number.
+//         price={15}
+//         photoName="pizzas/funghi.jpg"
+//       />
+//     </main>
+//   );
+// }
+
+// // and then second, we receive the props in the
+// // component that we pass them into.
+// function Pizza(props) {
+//   console.log(props);
+//   return (
+//     <div className="pizza">
+//       <img src={props.photoName} alt={props.name} />
+//       <div>
+//         <h3>{props.name}</h3>
+//         <p>{props.ingredients}</p>
+//         <span>{props.price + 3}</span>
+//       </div>
+//     </div>
+//   );
+// }
+
+// function Footer() {
+//   const hour = new Date().getHours();
+//   const openHour = 12;
+//   const closeHour = 22;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   console.log(isOpen);
+
+//   return (
+//     <footer className="footer">
+//       {new Date().toLocaleDateString()}. We're currently open
+//     </footer>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+// /////////////////////////////////////////////////////////
+// // Props, Immutability, and One-Way Data Flow
+// /////////////////////////////////////////////////////////
+// // see pdf lecture and video
+
+// // So now that we already know what props are
+// // and how we use them in practice, let's quickly review them
+// // and even learn some important additional things about props.
+
+// //////////////////////////////////////////////////////////
+// // The Rules of JSX
+// //////////////////////////////////////////////////////////
+// // see pdf lecture and video
+
+// // Many beginners get quite confused
+// // when they start using JSX in their own code.
+// // And in fact, JSX can be a bit tricky to understand
+// // and to master.
+// // But that's why I am here by your site,
+// // helping you along the way.
+
+////////////////////////////////////////////////////////////
+// Rendering Lists
+////////////////////////////////////////////////////////////
+
+// that we do in basically all React applications.
+// You will probably do it like 100 times
+// throughout this course
+// and so let's now learn how to render lists in React.
+// But first of all, what do we actually mean
+// by rendering lists?
+// Well, basically rendering a list is when we have an array
+// and we want to create one component
+// for each element of the array.
 
 function App() {
   return (
@@ -645,10 +772,6 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
 
-      {/* to define props, we do it in two steps. 
-       First, we pass the props
-      into the component, 
-        */}
       <Pizza
         name="Pizza Spinaci"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
@@ -659,13 +782,6 @@ function Menu() {
       <Pizza
         name="Pizza Funghi"
         ingredients="Tomato, mushrooms"
-        // price="15"
-
-        //         whenever you want to pass in
-        // something that is not a string,
-        // you just use, again, this JavaScript mode basically.
-        // Because, in fact, you can pass in anything as a prop.
-        // So it doesn't have to be a string or a number.
         price={15}
         photoName="pizzas/funghi.jpg"
       />
@@ -673,8 +789,6 @@ function Menu() {
   );
 }
 
-// and then second, we receive the props in the
-// component that we pass them into.
 function Pizza(props) {
   console.log(props);
   return (
@@ -711,24 +825,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-/////////////////////////////////////////////////////////
-// Props, Immutability, and One-Way Data Flow
-/////////////////////////////////////////////////////////
-// see pdf lecture and video
-
-// So now that we already know what props are
-// and how we use them in practice, let's quickly review them
-// and even learn some important additional things about props.
-
-//////////////////////////////////////////////////////////
-// The Rules of JSX
-//////////////////////////////////////////////////////////
-// see pdf lecture and video
-
-// Many beginners get quite confused
-// when they start using JSX in their own code.
-// And in fact, JSX can be a bit tricky to understand
-// and to master.
-// But that's why I am here by your site,
-// helping you along the way.
