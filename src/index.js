@@ -711,3 +711,12 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+/////////////////////////////////////////////////////////
+// Props, Immutability, and One-Way Data Flow
+/////////////////////////////////////////////////////////
+// see pdf lecture and video
+
+// So now that we already know what props are
+// and how we use them in practice, let's quickly review them
+// and even learn some important additional things about props.
