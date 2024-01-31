@@ -1468,12 +1468,200 @@ const pizzaData = [
 // // because only with the curly braces,
 // // we are actually destructuring.
 
-//////////////////////////////////////////////////////////////////////////
-// React Fragments
-//////////////////////////////////////////////////////////////////////////
+// //////////////////////////////////////////////////////////////////////////
+// // React Fragments
+// //////////////////////////////////////////////////////////////////////////
 
-// Let's now learn what a React Fragment is
-// and when exactly we might need one.
+// // Let's now learn what a React Fragment is
+// // and when exactly we might need one.
+
+// function App() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// function Header() {
+//   const style = {};
+
+//   return (
+//     <header className="header">
+//       <h1 style={style}>Fast React Pizza Co.</h1>
+//     </header>
+//   );
+// }
+
+// function Menu() {
+//   const pizzas = pizzaData;
+//   const numPizzas = pizzas.length;
+
+//   return (
+//     <main className="menu">
+//       <h2>Our Menu</h2>
+
+//       {numPizzas > 0 ? (
+//         // So JSX expressions must have one parent element.
+//         // And so this is exactly what we learned
+//         // in the Rules of JSX lecture.
+//         // So a piece of JSX, no matter where it is defined
+//         // can only have in fact one root element.
+//         // And this has happened to us before
+//         // and the way we always solve this
+//         // was by simply wrapping everything
+//         // in a div or some other component, so let's try that.
+//         // You don't have to do this.
+//         // And this is just to show you
+//         // that this will then actually mess up our formatting here.
+//         // So this is actually not really what we want.
+//         // We do not want to render one element
+//         // which contains these two,
+//         // but we really want to render these two elements here,
+//         // so these two elements in separate
+//         // without having one element as a parent of these two, right.
+//         // And so this is the case in which we need a React Fragment.
+//         // So a React Fragment basically lets us group some elements
+//         // without leaving any trace in the HTML tree, so in the DOM.
+//         ///////////
+//         // <div>
+//         //   <p>
+//         //     Authentic Italian cuisine. 6 creative dishes to choose from. All
+//         //     from our stone oven, all organic, all delicious.
+//         //   </p>
+
+//         //   <ul className="pizzas">
+//         //     {pizzas.map((pizza) => (
+//         //       <Pizza pizzaObject={pizza} key={pizza.name} />
+//         //     ))}
+//         //   </ul>
+//         // </div>
+
+//         ///////////////
+//         //         So it looks like here we need a React Fragment
+//         // and that's very easy.
+//         // All we have to do is to basically
+//         // just like this <> </> and so this is now a fragment.
+
+//         //if we inspect
+//         // So we have our container, then we have the menu,
+//         // then we have the h2, so this one, and then exactly,
+//         // we have the paragraph and the UL, but in separate,
+//         // so not wrapped in anything.
+//         //         So this is completely invisible here
+//         // and it's exactly what we were looking for.
+//         // And that's it, that's all a React Fragment is
+//         // and it's all that it does.
+//         <>
+//           <p>
+//             Authentic Italian cuisine. 6 creative dishes to choose from. All
+//             from our stone oven, all organic, all delicious.
+//           </p>
+
+//           <ul className="pizzas">
+//             {pizzas.map((pizza) => (
+//               <Pizza pizzaObject={pizza} key={pizza.name} />
+//             ))}
+//           </ul>
+//         </>
+//       ) : (
+//         <p>We're still working on our menu. Please come back later :)</p>
+//       )}
+//     </main>
+//   );
+// }
+
+// function Pizza({ pizzaObject }) {
+//   console.log(pizzaObject);
+
+//   if (pizzaObject.soldOut) return null;
+
+//   return (
+//     <li className="pizza">
+//       <img src={pizzaObject.photoName} alt={pizzaObject.name} />
+//       <div>
+//         <h3>{pizzaObject.name}</h3>
+//         <p>{pizzaObject.ingredients}</p>
+//         <span>{pizzaObject.price}</span>
+//       </div>
+//     </li>
+//   );
+// }
+
+// function Footer() {
+//   const hour = new Date().getHours();
+//   const openHour = 10;
+//   const closeHour = 22;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   console.log(isOpen);
+
+//   return (
+//     <footer className="footer">
+//       {isOpen ? (
+//         <Order closeHour={closeHour} openHour={openHour} />
+//       ) : (
+//         <p>
+//           We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+//         </p>
+//       )}
+//     </footer>
+//   );
+// }
+
+// function Order({ closeHour, openHour }) {
+//   return (
+//     <div className="order">
+//       <p>
+//         We're open from {openHour}:00 to {closeHour}:00. Come visit us or order
+//         online.
+//       </p>
+//       <button className="btn">Order</button>
+//     </div>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+// // and it's all that it does.
+// // Now, sometimes we need to add a key to a React Fragment,
+// // so, for example, when we are using it to render a list
+// // and so then we need to actually write it
+// // in a slightly different way.
+// // So first, let's make sure that we have React imported
+// // and we do, so it's right here
+// // and so we can write React.Fragment.
+// // And then down here we need to close that React.Fragment
+// // and so then the result is exactly the same.
+// // But if we need it, then here we could add a key
+// // of just anything.
+// // All right, now we don't need a key,
+// // so we can just go for the short version,
+// // which is of course a lot nicer, all right.
+
+// // // <React.Fragment key={}></React.Fragment>
+
+//////////////////////////////////////////////////////////////////
+// Setting Classes and Text Conditionally
+//////////////////////////////////////////////////////////////////
+// To finish this project let's learn
+// how to conditionally set some text inside elements
+// and also how to conditionally set class names.
+// So if we take one final look at our final project
+// the only difference is that this pizza here
+// that is sold out
+// has this text of sold out instead of the price.
+// And the whole element here is kind of grayed out.
+// So just to show that it's not available.
+// And so let's now do that.
 
 function App() {
   return (
@@ -1504,56 +1692,6 @@ function Menu() {
       <h2>Our Menu</h2>
 
       {numPizzas > 0 ? (
-        // So JSX expressions must have one parent element.
-        // And so this is exactly what we learned
-        // in the Rules of JSX lecture.
-        // So a piece of JSX, no matter where it is defined
-        // can only have in fact one root element.
-        // And this has happened to us before
-        // and the way we always solve this
-        // was by simply wrapping everything
-        // in a div or some other component, so let's try that.
-        // You don't have to do this.
-        // And this is just to show you
-        // that this will then actually mess up our formatting here.
-        // So this is actually not really what we want.
-        // We do not want to render one element
-        // which contains these two,
-        // but we really want to render these two elements here,
-        // so these two elements in separate
-        // without having one element as a parent of these two, right.
-        // And so this is the case in which we need a React Fragment.
-        // So a React Fragment basically lets us group some elements
-        // without leaving any trace in the HTML tree, so in the DOM.
-        ///////////
-        // <div>
-        //   <p>
-        //     Authentic Italian cuisine. 6 creative dishes to choose from. All
-        //     from our stone oven, all organic, all delicious.
-        //   </p>
-
-        //   <ul className="pizzas">
-        //     {pizzas.map((pizza) => (
-        //       <Pizza pizzaObject={pizza} key={pizza.name} />
-        //     ))}
-        //   </ul>
-        // </div>
-
-        ///////////////
-        //         So it looks like here we need a React Fragment
-        // and that's very easy.
-        // All we have to do is to basically
-        // just like this <> </> and so this is now a fragment.
-
-        //if we inspect
-        // So we have our container, then we have the menu,
-        // then we have the h2, so this one, and then exactly,
-        // we have the paragraph and the UL, but in separate,
-        // so not wrapped in anything.
-        //         So this is completely invisible here
-        // and it's exactly what we were looking for.
-        // And that's it, that's all a React Fragment is
-        // and it's all that it does.
         <>
           <p>
             Authentic Italian cuisine. 6 creative dishes to choose from. All
@@ -1630,21 +1768,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// and it's all that it does.
-// Now, sometimes we need to add a key to a React Fragment,
-// so, for example, when we are using it to render a list
-// and so then we need to actually write it
-// in a slightly different way.
-// So first, let's make sure that we have React imported
-// and we do, so it's right here
-// and so we can write React.Fragment.
-// And then down here we need to close that React.Fragment
-// and so then the result is exactly the same.
-// But if we need it, then here we could add a key
-// of just anything.
-// All right, now we don't need a key,
-// so we can just go for the short version,
-// which is of course a lot nicer, all right.
-
-// // <React.Fragment key={}></React.Fragment>
