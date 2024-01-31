@@ -1067,12 +1067,144 @@ const pizzaData = [
 //   </React.StrictMode>
 // );
 
-///////////////////////////////////////////////////////////////////
-// Conditional Rendering With Multiple Returns
-///////////////////////////////////////////////////////////////////
-// The third way
-// in which we can conditionally render some JSX
-// or some component is by using multiple returns.
+// ///////////////////////////////////////////////////////////////////
+// // Conditional Rendering With Multiple Returns
+// ///////////////////////////////////////////////////////////////////
+// // The third way
+// // in which we can conditionally render some JSX
+// // or some component is by using multiple returns.
+
+// function App() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// function Header() {
+//   const style = {};
+
+//   return (
+//     <header className="header">
+//       <h1 style={style}>Fast React Pizza Co.</h1>
+//     </header>
+//   );
+// }
+
+// function Menu() {
+//   const pizzas = pizzaData;
+//   const numPizzas = pizzas.length;
+
+//   return (
+//     <main className="menu">
+//       <h2>Our Menu</h2>
+
+//       {numPizzas > 0 ? (
+//         <ul className="pizzas">
+//           {pizzas.map((pizza) => (
+//             <Pizza pizzaObject={pizza} key={pizza.name} />
+//           ))}
+//         </ul>
+//       ) : (
+//         <p>We're still working on our menu. Please come back later :)</p>
+//       )}
+//     </main>
+//   );
+// }
+
+// function Pizza(props) {
+//   console.log(props);
+
+//   // And so with this then the pizza that is sold out
+//   // will not appear on the user interface,
+//   if (props.pizzaObject.soldOut) return null;
+
+//   return (
+//     <li className="pizza">
+//       <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+//       <div>
+//         <h3>{props.pizzaObject.name}</h3>
+//         <p>{props.pizzaObject.ingredients}</p>
+//         <span>{props.pizzaObject.price}</span>
+//       </div>
+//     </li>
+//   );
+// }
+
+// function Footer() {
+//   const hour = new Date().getHours();
+//   const openHour = 20;
+//   const closeHour = 22;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   console.log(isOpen);
+
+//   //  there is nothing stopping us
+//   // from adding another return keyword based on some condition.
+//   // So, of course each component
+//   // still can only return one block of JSX,
+//   // but that return can depend on a condition.
+
+//   // here, we are outside of JSX,
+//   // so we are simply inside the component,
+//   // and so here we can write any JavaScript we want.
+//   // So, we can now easily use the if keywords
+
+//   //   So, usually this early return, like we did here,
+//   // is more useful when we want
+//   // to render entire components conditionally
+//   // but not just some pieces of JSX.
+//   // if (!isOpen) return <p>CLOSE</p>;
+
+//   return (
+//     <footer className="footer">
+//       {isOpen ? (
+//         <div className="order">
+//           <p>
+//             We're open untill {closeHour}:00. Come visit us or order online.
+//           </p>
+//           <button className="btn">Order</button>
+//         </div>
+//       ) : (
+//         <p>
+//           We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+//         </p>
+//       )}
+//     </footer>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+// // So, as a conclusion
+// // of these three lectures on conditional rendering
+// // my recommendation is to use the return operator whenever
+// // you need to return some piece of JSX based on a condition.
+
+// // but also sometimes you just want to do something,
+// // you want to return something entirely different
+
+// // So, throughout this course you will learn
+// // which of these options is the best
+// // simply by practicing and using them
+// // in different situations over and over again.
+
+/////////////////////////////////////////////////////////////////
+// Extracting JSX Into a New Component
+/////////////////////////////////////////////////////////////////
+
+// Now to practice the concept of components
+// and using props just a little bit more,
+// let's extract parts of the footer into a new component.
 
 function App() {
   return (
@@ -1118,8 +1250,6 @@ function Menu() {
 function Pizza(props) {
   console.log(props);
 
-  // And so with this then the pizza that is sold out
-  // will not appear on the user interface,
   if (props.pizzaObject.soldOut) return null;
 
   return (
@@ -1140,23 +1270,6 @@ function Footer() {
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
-
-  //  there is nothing stopping us
-  // from adding another return keyword based on some condition.
-  // So, of course each component
-  // still can only return one block of JSX,
-  // but that return can depend on a condition.
-
-  // here, we are outside of JSX,
-  // so we are simply inside the component,
-  // and so here we can write any JavaScript we want.
-  // So, we can now easily use the if keywords
-
-  //   So, usually this early return, like we did here,
-  // is more useful when we want
-  // to render entire components conditionally
-  // but not just some pieces of JSX.
-  // if (!isOpen) return <p>CLOSE</p>;
 
   return (
     <footer className="footer">
@@ -1184,16 +1297,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// So, as a conclusion
-// of these three lectures on conditional rendering
-// my recommendation is to use the return operator whenever
-// you need to return some piece of JSX based on a condition.
-
-// but also sometimes you just want to do something,
-// you want to return something entirely different
-
-// So, throughout this course you will learn
-// which of these options is the best
-// simply by practicing and using them
-// in different situations over and over again.
