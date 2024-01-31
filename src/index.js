@@ -1198,13 +1198,143 @@ const pizzaData = [
 // // simply by practicing and using them
 // // in different situations over and over again.
 
-/////////////////////////////////////////////////////////////////
-// Extracting JSX Into a New Component
-/////////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////////
+// // Extracting JSX Into a New Component
+// /////////////////////////////////////////////////////////////////
 
-// Now to practice the concept of components
-// and using props just a little bit more,
-// let's extract parts of the footer into a new component.
+// // Now to practice the concept of components
+// // and using props just a little bit more,
+// // let's extract parts of the footer into a new component.
+
+// function App() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// function Header() {
+//   const style = {};
+
+//   return (
+//     <header className="header">
+//       <h1 style={style}>Fast React Pizza Co.</h1>
+//     </header>
+//   );
+// }
+
+// function Menu() {
+//   const pizzas = pizzaData;
+//   const numPizzas = pizzas.length;
+
+//   return (
+//     <main className="menu">
+//       <h2>Our Menu</h2>
+
+//       {numPizzas > 0 ? (
+//         <ul className="pizzas">
+//           {pizzas.map((pizza) => (
+//             <Pizza pizzaObject={pizza} key={pizza.name} />
+//           ))}
+//         </ul>
+//       ) : (
+//         <p>We're still working on our menu. Please come back later :)</p>
+//       )}
+//     </main>
+//   );
+// }
+
+// function Pizza(props) {
+//   console.log(props);
+
+//   if (props.pizzaObject.soldOut) return null;
+
+//   return (
+//     <li className="pizza">
+//       <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+//       <div>
+//         <h3>{props.pizzaObject.name}</h3>
+//         <p>{props.pizzaObject.ingredients}</p>
+//         <span>{props.pizzaObject.price}</span>
+//       </div>
+//     </li>
+//   );
+// }
+
+// function Footer() {
+//   const hour = new Date().getHours();
+//   const openHour = 10;
+//   const closeHour = 22;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   console.log(isOpen);
+
+//   return (
+//     <footer className="footer">
+//       {isOpen ? (
+//         <Order closeHour={closeHour} />
+//       ) : (
+//         <p>
+//           We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+//         </p>
+//       )}
+//     </footer>
+//   );
+// }
+
+// // So this is how we take a piece of JSX
+// // when the JSX in a component is getting a little bit too big
+// // and simply extract it into its own component.
+// // And then if that JSX depends on some value
+// // that was in the parent component, so like this close hour,
+// // then we simply pass it in as a prop.
+// // And so this is something that we're going to do all the time
+// // when we build our React applications.
+// function Order(props) {
+//   return (
+//     <div className="order">
+//       <p>
+//         We're open untill {props.closeHour}:00. Come visit us or order online.
+//       </p>
+//       <button className="btn">Order</button>
+//     </div>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+///////////////////////////////////////////////////////////////
+// Destructuring Props
+///////////////////////////////////////////////////////////////
+// So now that we know what props are,
+// let's make our lives a little bit easier
+// when working with props in practice.
+// So as we already know,
+// each time that we pass some props into a component,
+// that component will then
+// automatically receive this object of props,
+// which will contain all the props that we passed in.
+// And actually, all components receive this props object.
+// So even here in footer, where we don't pass any props in,
+// we can define that and we can log it to the console.
+// So it will be empty then.
+
+// what we want to do now is to avoid
+// having to write this props dot whatever else
+// all the time in our component.
+// So wouldn't it be nice
+// to directly receive this pizza object here
+// into the component, instead of just the props?
+// Well, we can actually do that with destructuring.
 
 function App() {
   return (
@@ -1284,14 +1414,6 @@ function Footer() {
   );
 }
 
-// So this is how we take a piece of JSX
-// when the JSX in a component is getting a little bit too big
-// and simply extract it into its own component.
-// And then if that JSX depends on some value
-// that was in the parent component, so like this close hour,
-// then we simply pass it in as a prop.
-// And so this is something that we're going to do all the time
-// when we build our React applications.
 function Order(props) {
   return (
     <div className="order">
