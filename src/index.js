@@ -1714,15 +1714,45 @@ function Menu() {
 function Pizza({ pizzaObject }) {
   console.log(pizzaObject);
 
-  if (pizzaObject.soldOut) return null;
+  // if (pizzaObject.soldOut) return null;
 
   return (
-    <li className="pizza">
+    //     So a template literal is JavaScript
+    // therefore let's enter JavaScript mode.
+    // Give it a save.
+    // And so for now, it is exactly what we had before.
+    // But now inside this template literal, we can,
+    // well kind of enter the template literal
+    // JavaScript mode as well in this way.
+    // So remember that it's actually quite similar
+    // the idea then entering JavaScript mode inside of JSX, right?
+    // The difference here that in the template literal
+    // to add some piece of code we also need this one, right?
+    // So this dollar sign.
+    // But then here we can once again
+    // make use of our friend the ternary operator.
+
+    //  for the class name,
+    // whenever the pizza is sold out,
+    // we can add the sold out class to the LI,
+    // which will then make it grayed out.
+    <li className={`pizza ${pizzaObject.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObject.photoName} alt={pizzaObject.name} />
       <div>
         <h3>{pizzaObject.name}</h3>
         <p>{pizzaObject.ingredients}</p>
-        <span>{pizzaObject.price}</span>
+
+        {/* {pizzaObject.soldOut ? (
+          <span>SOLD OUT</span>
+        ) : (
+          <span>{pizzaObject.price}</span>
+        )} */}
+
+        {/* Though in both cases we are then using a span.
+            And so I think it's a lot better to do it like this.
+            So to conditionally set the text content of an element
+            this is way cleaner in my opinion. */}
+        <span>{pizzaObject.soldOut ? "SOLD OUT" : pizzaObject.price}</span>
       </div>
     </li>
   );
