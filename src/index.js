@@ -1312,29 +1312,168 @@ const pizzaData = [
 //   </React.StrictMode>
 // );
 
-///////////////////////////////////////////////////////////////
-// Destructuring Props
-///////////////////////////////////////////////////////////////
-// So now that we know what props are,
-// let's make our lives a little bit easier
-// when working with props in practice.
-// So as we already know,
-// each time that we pass some props into a component,
-// that component will then
-// automatically receive this object of props,
-// which will contain all the props that we passed in.
-// And actually, all components receive this props object.
-// So even here in footer, where we don't pass any props in,
-// we can define that and we can log it to the console.
-// So it will be empty then.
+// ///////////////////////////////////////////////////////////////
+// // Destructuring Props
+// ///////////////////////////////////////////////////////////////
+// // So now that we know what props are,
+// // let's make our lives a little bit easier
+// // when working with props in practice.
+// // So as we already know,
+// // each time that we pass some props into a component,
+// // that component will then
+// // automatically receive this object of props,
+// // which will contain all the props that we passed in.
+// // And actually, all components receive this props object.
+// // So even here in footer, where we don't pass any props in,
+// // we can define that and we can log it to the console.
+// // So it will be empty then.
 
-// what we want to do now is to avoid
-// having to write this props dot whatever else
-// all the time in our component.
-// So wouldn't it be nice
-// to directly receive this pizza object here
-// into the component, instead of just the props?
-// Well, we can actually do that with destructuring.
+// // what we want to do now is to avoid
+// // having to write this props dot whatever else
+// // all the time in our component.
+// // So wouldn't it be nice
+// // to directly receive this pizza object here
+// // into the component, instead of just the props?
+// // Well, we can actually do that with destructuring.
+
+// function App() {
+//   return (
+//     <div className="container">
+//       <Header />
+//       <Menu />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// function Header() {
+//   const style = {};
+
+//   return (
+//     <header className="header">
+//       <h1 style={style}>Fast React Pizza Co.</h1>
+//     </header>
+//   );
+// }
+
+// function Menu() {
+//   const pizzas = pizzaData;
+//   const numPizzas = pizzas.length;
+
+//   return (
+//     <main className="menu">
+//       <h2>Our Menu</h2>
+
+//       {numPizzas > 0 ? (
+//         <ul className="pizzas">
+//           {pizzas.map((pizza) => (
+//             <Pizza pizzaObject={pizza} key={pizza.name} />
+//           ))}
+//         </ul>
+//       ) : (
+//         <p>We're still working on our menu. Please come back later :)</p>
+//       )}
+//     </main>
+//   );
+// }
+
+// // instead of directly receiving these props,
+// // we can immediately destructure them.
+// // And so here, we can write pizza object,
+// // which needs to match exactly the name of the prop
+// // that's being passed in, so this one here.
+// // And then from there on, all of these props here can go.
+
+// // But the props object itself no longer exists.
+// // But this is really, really nice,
+// // because right now, all we have to do
+// // is to look at this line right here
+// // in order to know which props
+// // this component will actually receive.
+// // So before this, all we had was the generic props.
+// // And then if we wanted to know
+// // what kind of props we will receive here eventually,
+// // we would have to go to the place
+// // where the props are actually passed in.
+// // But now, not anymore.
+// // So now right here in this component definition,
+// // we can immediately see that we will receive a pizza object.
+// function Pizza({ pizzaObject }) {
+//   console.log(pizzaObject);
+
+//   if (pizzaObject.soldOut) return null;
+
+//   return (
+//     <li className="pizza">
+//       <img src={pizzaObject.photoName} alt={pizzaObject.name} />
+//       <div>
+//         <h3>{pizzaObject.name}</h3>
+//         <p>{pizzaObject.ingredients}</p>
+//         <span>{pizzaObject.price}</span>
+//       </div>
+//     </li>
+//   );
+// }
+
+// function Footer() {
+//   const hour = new Date().getHours();
+//   const openHour = 10;
+//   const closeHour = 22;
+//   const isOpen = hour >= openHour && hour <= closeHour;
+//   console.log(isOpen);
+
+//   return (
+//     <footer className="footer">
+//       {isOpen ? (
+//         <Order closeHour={closeHour} openHour={openHour} />
+//       ) : (
+//         <p>
+//           We're happy to welcome you between {openHour}:00 and {closeHour}:00.
+//         </p>
+//       )}
+//     </footer>
+//   );
+// }
+
+// function Order({ closeHour, openHour }) {
+//   return (
+//     <div className="order">
+//       <p>
+//         We're open from {openHour}:00 to {closeHour}:00. Come visit us or order
+//         online.
+//       </p>
+//       <button className="btn">Order</button>
+//     </div>
+//   );
+// }
+
+// // React v18
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+
+// // So from now on, for the rest of the course,
+// // we will always receive props like this here.
+
+// // Just make sure to never, ever forget the curly braces,
+// // because then of course everything will break.
+
+// // So that's a common beginner mistake.
+// // And so yeah, you have been warned.
+// // Never forget that,
+// // because only with the curly braces,
+// // we are actually destructuring.
+
+//////////////////////////////////////////////////////////////////////////
+// React Fragments
+//////////////////////////////////////////////////////////////////////////
+
+// Let's now learn what a React Fragment is
+// and when exactly we might need one.
 
 function App() {
   return (
@@ -1377,27 +1516,6 @@ function Menu() {
   );
 }
 
-// instead of directly receiving these props,
-// we can immediately destructure them.
-// And so here, we can write pizza object,
-// which needs to match exactly the name of the prop
-// that's being passed in, so this one here.
-// And then from there on, all of these props here can go.
-
-// But the props object itself no longer exists.
-// But this is really, really nice,
-// because right now, all we have to do
-// is to look at this line right here
-// in order to know which props
-// this component will actually receive.
-// So before this, all we had was the generic props.
-// And then if we wanted to know
-// what kind of props we will receive here eventually,
-// we would have to go to the place
-// where the props are actually passed in.
-// But now, not anymore.
-// So now right here in this component definition,
-// we can immediately see that we will receive a pizza object.
 function Pizza({ pizzaObject }) {
   console.log(pizzaObject);
 
@@ -1455,15 +1573,3 @@ root.render(
     <App />
   </React.StrictMode>
 );
-
-// So from now on, for the rest of the course,
-// we will always receive props like this here.
-
-// Just make sure to never, ever forget the curly braces,
-// because then of course everything will break.
-
-// So that's a common beginner mistake.
-// And so yeah, you have been warned.
-// Never forget that,
-// because only with the curly braces,
-// we are actually destructuring.
