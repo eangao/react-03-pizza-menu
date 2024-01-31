@@ -1377,18 +1377,39 @@ function Menu() {
   );
 }
 
-function Pizza(props) {
-  console.log(props);
+// instead of directly receiving these props,
+// we can immediately destructure them.
+// And so here, we can write pizza object,
+// which needs to match exactly the name of the prop
+// that's being passed in, so this one here.
+// And then from there on, all of these props here can go.
 
-  if (props.pizzaObject.soldOut) return null;
+// But the props object itself no longer exists.
+// But this is really, really nice,
+// because right now, all we have to do
+// is to look at this line right here
+// in order to know which props
+// this component will actually receive.
+// So before this, all we had was the generic props.
+// And then if we wanted to know
+// what kind of props we will receive here eventually,
+// we would have to go to the place
+// where the props are actually passed in.
+// But now, not anymore.
+// So now right here in this component definition,
+// we can immediately see that we will receive a pizza object.
+function Pizza({ pizzaObject }) {
+  console.log(pizzaObject);
+
+  if (pizzaObject.soldOut) return null;
 
   return (
     <li className="pizza">
-      <img src={props.pizzaObject.photoName} alt={props.pizzaObject.name} />
+      <img src={pizzaObject.photoName} alt={pizzaObject.name} />
       <div>
-        <h3>{props.pizzaObject.name}</h3>
-        <p>{props.pizzaObject.ingredients}</p>
-        <span>{props.pizzaObject.price}</span>
+        <h3>{pizzaObject.name}</h3>
+        <p>{pizzaObject.ingredients}</p>
+        <span>{pizzaObject.price}</span>
       </div>
     </li>
   );
@@ -1404,7 +1425,7 @@ function Footer() {
   return (
     <footer className="footer">
       {isOpen ? (
-        <Order closeHour={closeHour} />
+        <Order closeHour={closeHour} openHour={openHour} />
       ) : (
         <p>
           We're happy to welcome you between {openHour}:00 and {closeHour}:00.
@@ -1414,11 +1435,12 @@ function Footer() {
   );
 }
 
-function Order(props) {
+function Order({ closeHour, openHour }) {
   return (
     <div className="order">
       <p>
-        We're open untill {props.closeHour}:00. Come visit us or order online.
+        We're open from {openHour}:00 to {closeHour}:00. Come visit us or order
+        online.
       </p>
       <button className="btn">Order</button>
     </div>
@@ -1433,3 +1455,15 @@ root.render(
     <App />
   </React.StrictMode>
 );
+
+// So from now on, for the rest of the course,
+// we will always receive props like this here.
+
+// Just make sure to never, ever forget the curly braces,
+// because then of course everything will break.
+
+// So that's a common beginner mistake.
+// And so yeah, you have been warned.
+// Never forget that,
+// because only with the curly braces,
+// we are actually destructuring.
